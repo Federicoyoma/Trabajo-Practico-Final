@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Plancha : MonoBehaviour
+{
+    public GameObject planchaRosaPrefab;
+    public GameObject rachel;
+    private float lastShoot;
+    private int Health = 3;
+    // Start is called before the first frame update
+    private void Update()
+    {
+        Vector3 direction = rachel.transform.position - transform.position;
+        if (direction.x >= 0.0f) transform.localScale = new Vector3(-2.0f, 1.0f, 1.0f);
+        else transform.localScale = new Vector3(2.0f,1.0f,1.0f);
+
+        float distance = Mathf.Abs(rachel.transform.position.x - transform.position.x);
+
+        if(distance < 4.0f && Time.time > lastShoot +1.25f)
+        {
+            Shoot();
+            lastShoot = Time.time;
+        }
+
+    }
+
+
+    private void Shoot()
+    {
+        Vector3 direction;
+
+        if (transform.localScale.x == -1.0f) direction = Vector2.right;
+        else direction = Vector3.left;
+       GameObject planchaRosa = Instantiate(planchaRosaPrefab, transform.position + direction * 0.1f, Quaternion.identity);
+        planchaRosa.GetComponent<BulletScript>().SetDirection(direction);
+    }
+
+
+    public void Hit()
+    {
+        Health = Health - 1;
+        if (Health == 0) Destroy(gameObject);
+    }
+
+}
