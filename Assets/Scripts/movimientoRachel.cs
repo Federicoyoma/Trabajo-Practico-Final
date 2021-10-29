@@ -64,7 +64,7 @@ public class movimientoRachel : MonoBehaviour
 
 
 
-        //------------PRUEBA DE CORAZONES
+        
         if(Health < 1)
         {
             Destroy(hearts[0].gameObject);
@@ -89,7 +89,7 @@ public class movimientoRachel : MonoBehaviour
         {
             Destroy(hearts[4].gameObject);
         }
-        //------------PRUEBA DE CORAZONES
+       
 
     }
 
@@ -119,20 +119,25 @@ public class movimientoRachel : MonoBehaviour
         if (Health == 0) Destroy(gameObject);
 
 
-        //----------..
+      
         if (Health == 0)
         {
             SceneManager.LoadScene(escenaActual());
         }
-        //----....
+        
+
+
+
+        
+
     }
 
 
 
-    //-----------------------
+    
     int escenaActual()
     {
         return SceneManager.GetActiveScene().buildIndex;
     }
-    //----------------------
+    
 }
